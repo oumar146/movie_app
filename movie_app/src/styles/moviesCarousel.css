@@ -1,0 +1,121 @@
+Item du caroussel
+.card img {
+  margin: auto;
+  border-radius: 5px;
+  max-width: 100%;
+}
+
+.card {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+
+.btn-close{
+  color: white;
+}
+
+.modal-header,.modal-body,.modal-footer{
+  background-color:#080f1f;
+  color: white;
+  }
+
+  .modal-body strong{
+color: #ffc03d;
+    }
+
+.card:focus,
+.card:active {
+  outline: none;
+}
+
+.carousel-container {
+  padding: 3vh;
+}
+
+.movie-title {
+  color: white;
+}
+
+
+/* Flèches */
+.slick-prev,
+.slick-next {
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  z-index: 1000;
+  top: -50px; /* Place les flèches au-dessus du carrousel */
+  right: 10px; /* Décale les flèches vers la droite */
+  left: unset; /* Réinitialise la position gauche */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute; /* Assure un positionnement absolu */
+  color: #ffc03d;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: "";
+  position: relative;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: solid #ffc03d;
+  border-width: 0 3px 3px 0;
+}
+
+.slick-prev:before {
+  transform: rotate(135deg); /* Rotation pour la flèche gauche */
+}
+
+.slick-next:before {
+  transform: rotate(-45deg); /* Rotation pour la flèche droite */
+}
+
+/* Espace entre les flèches */
+.slick-prev {
+  right: 50px; /* Décale légèrement la flèche précédente */
+}
+
+.slick-next {
+  right: 10px; /* Garde la flèche suivante proche du bord */
+}
+
+.carousel-title {
+  color: #ffc03d;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .carousel-title {
+    font-size: 1.2rem;
+    padding: 15px;
+    color: #ffc03d;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .carousel-title {
+    font-size: 1.3rem;
+    padding: 10px;
+  }
+
+  .card img {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .carousel-title {
+    font-size: 1.2rem;
+    padding: 5px;
+  }
+
+  .card img {
+    max-width: 100%;
+    border-radius: 3px;
+  }
+}

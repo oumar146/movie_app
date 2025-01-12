@@ -1,0 +1,40 @@
+/* Résultat de la recherche */
+.search-results {
+  font-size: x-large;
+  color: white;
+  margin: 20px 20px;
+}
+
+/* Conteneur des films */
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start; /* Aligne les résultats à gauche */
+  padding: 20px;
+}
+
+/* Carte d'un film */
+.card {
+  width: 150px; /* Ajuste la largeur des cartes selon tes besoins */
+  text-decoration: none;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card img:hover {
+  transform: scale(1.1);
+}
+
+/* Message aucun résultat */
+.no-results {
+  font-size: large;
+  color: #888;
+  text-align: center;
+  margin-top: 50px;
+}

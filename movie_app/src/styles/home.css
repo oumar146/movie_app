@@ -1,0 +1,24 @@
+/* Classe globale */
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #080f1f;
+
+}
+.horizontal-alignment {
+  display: flex;
+  align-items: center;
+}
+
+.vertical-alignment {
+  display: flex;
+  align-items: center;
+}
+
+.space-between{
+  justify-content: space-between;
+}
+/* Lien de navigation */
+.navlink {
+  text-decoration: none;
+}
