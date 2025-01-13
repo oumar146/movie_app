@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import SearchMovies from "../components/TMDB_API/SearchMovies";
 import "../styles/SearchedMovie.css";
 import MoviesModal from "./MovieModal";
+import MovieDetails from "./TMDB_API/MovieDetails";
 import { useModal } from "./context/ModalContext";
 
 const SearchedMovie = ({ input }) => {
@@ -9,6 +10,7 @@ const SearchedMovie = ({ input }) => {
   const [movies, setMovies] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
     // Scroll to top when component is loaded
@@ -30,6 +32,9 @@ const SearchedMovie = ({ input }) => {
   return (
     <div style={{ minHeight: "100vh" }}>
       <SearchMovies input={input} setData={setMovies} />
+      {selectedMovie && (
+            <MovieDetails id={selectedMovie.id} setData={setMovieDetails} />
+          )}
       {movies.length > 0 ? (
         <div className={`movies ${movies.length >= 4 ? "centered" : ""}`}
 >
@@ -65,7 +70,7 @@ const SearchedMovie = ({ input }) => {
       <MoviesModal
         modalShow={modalShow}
         closeModal={closeModal}
-        movieDetails={selectedMovie}
+        movieDetails={movieDetails}
       />
     </div>
   );

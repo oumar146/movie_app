@@ -3,13 +3,11 @@ import Slider from "react-slick";
 import MovieGenres from "./TMDB_API/MovieGenres";
 import MovieDetails from "./TMDB_API/MovieDetails";
 import MoviesModal from "./MovieModal";
-import { useModal } from "./context/ModalContext"; 
+import { useModal } from "./context/ModalContext";
 import "../styles/moviesCarousel.css";
 
-
-
 const MoviesCarousel = (props) => {
-  const { openMovieModal, closeMovieModal } = useModal(); 
+  const { openMovieModal, closeMovieModal } = useModal();
   const [modalShow, setModalShow] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [movieDetails, setMovieDetails] = useState(null);
@@ -52,14 +50,14 @@ const MoviesCarousel = (props) => {
   const openModal = (movie) => {
     setSelectedMovie(movie);
     setModalShow(true);
-    openMovieModal()
+    openMovieModal();
     console.log("open : ", selectedMovie);
   };
 
   const closeModal = () => {
     setSelectedMovie(null);
     setModalShow(false);
-    closeMovieModal()
+    closeMovieModal();
     setMovieDetails(false);
   };
 
@@ -69,9 +67,7 @@ const MoviesCarousel = (props) => {
         <div>
           <MovieGenres id={genresList} setData={setGenresList} />
           {selectedMovie && (
-            <div>
-              <MovieDetails id={selectedMovie.id} setData={setMovieDetails} />
-            </div>
+            <MovieDetails id={selectedMovie.id} setData={setMovieDetails} />
           )}
           {props.title && <h4 className="carousel-title">{props.title}</h4>}
           <Slider {...settings} className="carousel custom-carousel">
@@ -102,7 +98,11 @@ const MoviesCarousel = (props) => {
 
       {/* Modal */}
       {modalShow && movieDetails && (
-        <MoviesModal closeModal={closeModal} movieDetails={movieDetails} modalShow={modalShow}/>
+        <MoviesModal
+          closeModal={closeModal}
+          movieDetails={movieDetails}
+          modalShow={modalShow}
+        />
       )}
     </div>
   );

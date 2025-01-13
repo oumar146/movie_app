@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Slider from "react-slick";
-import MovieGenres from "./TMDB_API/MovieGenres";
-import MovieDetails from "./TMDB_API/MovieDetails";
+import React, { useState } from "react";
 import MovieVideo from "./TMDB_API/MovieVideo";
 import { Modal } from "react-bootstrap";
-import { useModal } from "./context/ModalContext"; 
 
 const TrailerButton = (props) => {
   const [trailer, setTrailer] = useState([]);
