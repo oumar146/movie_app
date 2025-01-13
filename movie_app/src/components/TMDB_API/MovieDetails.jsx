@@ -4,7 +4,6 @@ const { TOKEN } = require('../../config.json');
 
 /*Ce composant à besoins des props suivant : id = id du film et setData = fonction pour changer la valeur d'un state */
 const MovieDetails = (props) => {
-
     useEffect(() => {
 
         // Options de la requête fetch

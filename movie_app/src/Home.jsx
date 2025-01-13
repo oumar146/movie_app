@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Header from "./components/Header";
 import Movies from "./components/TMDB_API/Movies";
 import MoviesCarousel from "./components/MoviesCarousel";
 import SearchedMovie from "./components/SearchedMovie";
+import { useModal } from './components/context/ModalContext';
 import "./styles/home.css";
 
 const ClassicMoviesCarousel = () => {
@@ -15,7 +16,7 @@ const ClassicMoviesCarousel = () => {
   return (
     <div>
       <Movies
-        url="https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1"
+        url="https://api.themoviedb.org/3/movie/upcoming?language=fr-FR&page=1"
         setData={setClassicMovies}
       />
       {classicMovies.length > 0 && (
@@ -34,7 +35,7 @@ const PopularMoviesCarousel = () => {
   return (
     <div>
       <Movies
-        url="https://api.themoviedb.org/3/trending/movie/day?language=en-US"
+        url="https://api.themoviedb.org/3/trending/movie/day?language=fr-FR"
         setData={setPopularMovies}
       />
       {popularMovies.length > 0 && (
@@ -54,7 +55,7 @@ const TopRatedMoviesCarousel = () => {
   return (
     <div>
       <Movies
-        url="https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1"
+        url="https://api.themoviedb.org/3/movie/top_rated?language=fr-FR&page=1"
         setData={setTopRatedMovies}
       />
       {topRatedMovies.length > 0 && (
@@ -66,9 +67,13 @@ const TopRatedMoviesCarousel = () => {
 
 const Home = () => {
   const [input, setInput] = useState("");
-  // style={{filter: "blur(5px)"}}
+  const { modalOpen } =   useModal(); 
+
+  // Applique le flou si le modal est ouvert
+  const blurStyle = modalOpen ? { filter: "blur(5px)" } : {};
+
   return (
-    <div  >
+    <div style={blurStyle}> {/* Applique le style ici */}
       <Header input={input} setInput={setInput} />
       {!input ? (
         <div>
@@ -76,7 +81,7 @@ const Home = () => {
           <TopRatedMoviesCarousel />
           <PopularMoviesCarousel />
         </div>
-      ) : <SearchedMovie  input={input}/>}
+      ) : <SearchedMovie input={input} />}
     </div>
   );
 };

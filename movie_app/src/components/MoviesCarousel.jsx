@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import MovieGenres from "./TMDB_API/MovieGenres";
-import { Button, Modal } from "react-bootstrap";
+import MovieDetails from "./TMDB_API/MovieDetails";
+import MoviesModal from "./MovieModal";
+import { useModal } from "./context/ModalContext"; 
 import "../styles/moviesCarousel.css";
 
+
+
 const MoviesCarousel = (props) => {
+  const { openMovieModal, closeMovieModal } = useModal(); 
   const [modalShow, setModalShow] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [movieDetails, setMovieDetails] = useState(null);
   const [genresList, setGenresList] = useState([]);
-
-  useEffect(() => {
-    // Ajoutez ici votre logique pour récupérer les genres (ex : MovieGenres)
-  }, []); // Mettre un tableau vide pour ne l'exécuter qu'une fois
 
   const settings = {
     infinite: true,
@@ -50,11 +52,15 @@ const MoviesCarousel = (props) => {
   const openModal = (movie) => {
     setSelectedMovie(movie);
     setModalShow(true);
+    openMovieModal()
+    console.log("open : ", selectedMovie);
   };
 
   const closeModal = () => {
     setSelectedMovie(null);
     setModalShow(false);
+    closeMovieModal()
+    setMovieDetails(false);
   };
 
   return (
@@ -62,7 +68,11 @@ const MoviesCarousel = (props) => {
       {props.moviesList.length > 0 && (
         <div>
           <MovieGenres id={genresList} setData={setGenresList} />
-
+          {selectedMovie && (
+            <div>
+              <MovieDetails id={selectedMovie.id} setData={setMovieDetails} />
+            </div>
+          )}
           {props.title && <h4 className="carousel-title">{props.title}</h4>}
           <Slider {...settings} className="carousel custom-carousel">
             {props.moviesList.map(
@@ -91,62 +101,8 @@ const MoviesCarousel = (props) => {
       )}
 
       {/* Modal */}
-      {selectedMovie && (
-        <Modal
-          show={modalShow}
-          onHide={closeModal}
-          size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-              {selectedMovie.title}
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="horizontal-alignment space-between">
-              <p>
-                <strong>Date de sortie : </strong>
-                {selectedMovie.release_date}
-              </p>
-              <p>
-                <strong>Note : </strong>
-                {selectedMovie.vote_average}
-              </p>
-              <p>
-                <strong>
-                  {selectedMovie.genre_ids.length > 1
-                    ? "Genres : "
-                    : "Genre : "}
-                </strong>
-                {genresList
-                  .filter((genre) => selectedMovie.genre_ids.includes(genre.id))
-                  .map((genre, index, array) => (
-                    <span key={genre.id}>
-                      {genre.name}
-                      {index < array.length - 1 && ", "}
-                    </span>
-                  ))}
-              </p>
-            </div>
-            <div className="horizontal-alignment">
-              <img
-                src={`https://image.tmdb.org/t/p/w300/${selectedMovie.poster_path}`}
-                alt={selectedMovie.title}
-                title={selectedMovie.title}
-              />
-              <div>
-                              <strong>Description</strong>
-              <p>
-                {selectedMovie.overview ||
-                  "Pas de description disponible pour ce film."}
-              </p>
-              </div>
-
-            </div>
-          </Modal.Body>
-        </Modal>
+      {modalShow && movieDetails && (
+        <MoviesModal closeModal={closeModal} movieDetails={movieDetails} modalShow={modalShow}/>
       )}
     </div>
   );

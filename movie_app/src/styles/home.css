@@ -3,7 +3,6 @@ body {
   margin: 0px;
   padding: 0px;
   background-color: #080f1f;
-
 }
 .horizontal-alignment {
   display: flex;
@@ -16,7 +15,8 @@ body {
 }
 
 .space-between{
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  gap: 3vh;
 }
 /* Lien de navigation */
 .navlink {

@@ -16,7 +16,7 @@ const MovieVideo = (props) => {
             }
         };
 
-        fetch(`https://api.themoviedb.org/3/movie/${props.id}/videos?language=fr-FR`, options)
+        fetch(`https://api.themoviedb.org/3/movie/${props.id}/videos`, options)
             .then(response => response.json())
             .then(response => props.setData(response.results))
             .catch(err => console.error(err));

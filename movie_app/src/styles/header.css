@@ -1,34 +1,44 @@
 /* En-tête */
-header{
+
+  header{
     display: flex;
-    gap: 40px;
-    padding: 10px 20px;
-    width: 95%;
+    flex-direction: column;
+    gap: 10px;
+    padding:2vh;
+    width: 100%;
     color: white;
   }
-
 /* Barre de recherche */
-  .search-bar {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ffc03d;
-    border-radius: 15px;
-    flex-wrap: nowrap;
-    width: 100%;
-    padding: 0vh 0vh 0vh 3vh;
-  }
-  
-  .search-bar input {
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: #eeeeeeb0;
-    flex: 1;
-  }
+.search-bar {
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: auto;
+  padding: 20px 0px;
+}
 
-  .search-bar svg {
-    color: #080f1f;
-    background:#ffc03d;
-    border-radius: 0px 15px 15px 0px;
-    padding: 13px 30px;
-  }
+.search-bar input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #eeeeeeb0;
+  flex: 1;
+  border: 1px solid #ffc03d;
+  border-radius: 15px 0px 0px 15px;
+  padding: 0px 15px; /* Ajuster le padding pour un meilleur alignement */
+  height: 40px; /* Définir une hauteur pour l'input */
+}
+
+.search-bar svg {
+  color: #080f1f;
+  background: #ffc03d;
+  border-radius: 0px 15px 15px 0px;
+  padding: 8px; 
+  cursor: pointer; 
+  height: 40px; 
+  width: 60px;
+  display: flex;
+}
+

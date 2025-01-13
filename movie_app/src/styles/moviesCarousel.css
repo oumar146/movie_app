@@ -1,4 +1,4 @@
-Item du caroussel
+/* Item du caroussel  */
 .card img {
   margin: auto;
   border-radius: 5px;
@@ -9,44 +9,36 @@ Item du caroussel
   background-color: transparent;
   border: none;
   text-align: center;
-  padding: 10px;
+  padding: 50vh;
 }
 
-.btn-close{
-  color: white;
+.modal-header .close {
+  color: #FFC03D; /* Remplace par la couleur que tu veux */
+  font-size: 1.5rem; /* Optionnel : ajuste la taille de la croix */
 }
 
-.modal-header,.modal-body,.modal-footer{
-  background-color:#080f1f;
-  color: white;
-  }
+.modal-header .close:hover {
+  color: #F1C40F; /* Couleur au survol de la croix */
+}
 
-  .modal-body strong{
-color: #ffc03d;
-    }
 
 .card:focus,
 .card:active {
   outline: none;
 }
 
-.carousel-container {
-  padding: 3vh;
-}
-
 .movie-title {
   color: white;
 }
-
 
 /* Flèches */
 .slick-prev,
 .slick-next {
   width: 30px;
-  height: 30px;
+  height: 0px;
   background-color: transparent;
   z-index: 1000;
-  top: -50px; /* Place les flèches au-dessus du carrousel */
+  top: -40px; /* Place les flèches au-dessus du carrousel */
   right: 10px; /* Décale les flèches vers la droite */
   left: unset; /* Réinitialise la position gauche */
   display: flex;
@@ -88,7 +80,7 @@ color: #ffc03d;
   color: #ffc03d;
 }
 
-/* Responsive */
+/* Responsive  */
 @media screen and (max-width: 1024px) {
   .carousel-title {
     font-size: 1.2rem;
@@ -100,7 +92,6 @@ color: #ffc03d;
 @media screen and (max-width: 768px) {
   .carousel-title {
     font-size: 1.3rem;
-    padding: 10px;
   }
 
   .card img {
@@ -111,7 +102,6 @@ color: #ffc03d;
 @media screen and (max-width: 480px) {
   .carousel-title {
     font-size: 1.2rem;
-    padding: 5px;
   }
 
   .card img {
@@ -119,3 +109,110 @@ color: #ffc03d;
     border-radius: 3px;
   }
 }
+/* Styles globaux */
+.card img {
+  margin: auto;
+  border-radius: 5px;
+  max-width: 100%;
+}
+
+.card {
+  background-color: transparent;
+  border: none;
+  text-align: center;
+  padding: 2vh;
+}
+
+button {
+  background-color: #ffc03d;
+  color: #101a34;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #d9a835;
+}
+
+.modal-content {
+  background-color: #080f1f;
+  color: #ffc03d;
+  max-width:350px;
+  margin: auto;
+  padding: 2px;
+}
+
+.modal-header .close {
+  font-size: 1.5rem; /* Ajuste la taille de la croix */
+  font-weight: bold; /* Rend la croix plus visible */
+  border: none; /* Retire les bordures éventuelles */
+  background: transparent; /* Retire tout arrière-plan */
+  transition: all 0.3s ease; /* Ajoute une transition pour un effet au survol */
+  padding: 0px;
+}
+
+
+.modal-header {
+  border:none;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.modal-header .close {
+  color: #ffc03d;
+  font-size: 1.5rem;
+}
+
+.modal-header .close:hover {
+  color: #f1c40f;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  color: white;
+}
+
+.modal-left img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.trailer-btn {
+  background-color: #ffc03d;
+  color: #080f1f;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.trailer-btn:hover {
+  background-color: #e5b30f;
+}
+
+.modal-right {
+  width: 100%;
+  text-align: left;
+}
+
+.modal-right p {
+  margin-bottom: 15px;
+}
+
+.modal-right strong {
+  color: #ffc03d;
+}
+
