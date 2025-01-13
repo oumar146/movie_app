@@ -1,9 +1,13 @@
 /* Classe globale */
+
+
 body {
   margin: 0px;
   padding: 0px;
   background-color: #080f1f;
-}
+  font-family: "Open Sans", serif;
+
+  }
 .horizontal-alignment {
   display: flex;
   align-items: center;

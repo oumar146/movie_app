@@ -30,7 +30,9 @@
 }
 
 .movie-title {
+  text-align: center;
   color: white;
+  padding: 1vh 0vh;
 }
 
 /* Flèches */
