@@ -31,7 +31,8 @@ const SearchedMovie = ({ input }) => {
     <div style={{ minHeight: "100vh" }}>
       <SearchMovies input={input} setData={setMovies} />
       {movies.length > 0 ? (
-        <div className="movies">
+        <div className={`movies ${movies.length >= 4 ? "centered" : ""}`}
+>
           {movies.map(
             (movie) =>
               movie.poster_path && (

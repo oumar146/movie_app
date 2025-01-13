@@ -10,6 +10,8 @@
   border: none;
   text-align: center;
   padding: 50vh;
+  cursor:pointer;
+
 }
 
 .modal-header .close {

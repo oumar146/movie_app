@@ -1,8 +1,9 @@
 /* Résultat de la recherche */
 .search-results {
-  font-size: x-large;
+  font-size: 1.5rem; /* Utilisation d'une unité relative */
   color: white;
-  margin: 20px 20px;
+  margin: 20px;
+  text-align: center; /* Centrer le texte pour un meilleur rendu */
 }
 
 /* Conteneur des films */
@@ -11,14 +12,16 @@
   flex-wrap: wrap;
   gap: 20px;
   align-items: flex-start;
-  justify-content: flex-start; /* Aligne les résultats à gauche */
+  justify-content: center; /* Aligne les résultats au centre pour les petits écrans */
   padding: 20px;
 }
 
 /* Carte d'un film */
 .card {
-  width: 200px; /* Ajuste la largeur des cartes selon tes besoins */
+  width: calc(33.33% - 20px); /* 3 cartes par ligne avec un gap */
+  max-width: 200px; /* Limite la taille sur les grands écrans */
   text-decoration: none;
+  cursor:pointer;
 }
 
 .card img {
@@ -29,8 +32,44 @@
 
 /* Message aucun résultat */
 .no-results {
-  font-size: large;
+  font-size: 1.2rem;
   color: white;
   text-align: center;
   margin-top: 50px;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .card {
+    width: calc(50% - 20px); /* 2 cartes par ligne */
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: calc(100% - 20px); /* 1 carte par ligne */
+  }
+
+  .search-results {
+    font-size: 1.2rem; /* Réduit la taille de la police */
+  }
+
+  .movies {
+    gap: 10px; /* Réduit l'espacement pour les petits écrans */
+  }
+}
+
+/* Conteneur des films centré */
+.movies.centered {
+  justify-content: center;
+}
+
+/* Conteneur des films aligné à gauche */
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start; /* Aligne à gauche par défaut */
+  padding: 20px;
 }
