@@ -37,22 +37,21 @@ const SearchedMovie = ({ input }) => {
             (movie) =>
               movie.poster_path && (
                 <div
-                  key={movie.id}
-                  className="card"
-                  onClick={() => openModal(movie)} // Ouvre le modal avec les détails du film
-                >
-                  <img
-                    src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                    alt={movie.title || movie.name}
-                    title={movie.title || movie.name}
-                    className="movie-position"
-                  />
-                  <p className="movie-title">
-                    {movie.title
-                      ? movie.title
-                      : "Le titre n'est pas disponible"}
-                  </p>
-                </div>
+                key={movie.id}
+                className="movie-card" // Utilisation de la nouvelle classe
+                onClick={() => openModal(movie)} // Ouvre le modal avec les détails du film
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                  alt={movie.title || movie.name}
+                  title={movie.title || movie.name}
+                  className="movie-position"
+                />
+                <p className="movie-title">
+                  {movie.title ? movie.title : "Le titre n'est pas disponible"}
+                </p>
+              </div>
+              
               )
           )}
         </div>

@@ -17,14 +17,14 @@
 }
 
 /* Carte d'un film */
-.card {
+.movie-card {
   width: calc(33.33% - 20px); /* 3 cartes par ligne avec un gap */
   max-width: 200px; /* Limite la taille sur les grands écrans */
   text-decoration: none;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.card img {
+.movie-card img {
   width: 100%;
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
@@ -40,13 +40,13 @@
 
 /* Responsiveness */
 @media (max-width: 1024px) {
-  .card {
+  .movie-card {
     width: calc(50% - 20px); /* 2 cartes par ligne */
   }
 }
 
 @media (max-width: 768px) {
-  .card {
+  .movie-card {
     width: calc(100% - 20px); /* 1 carte par ligne */
   }
 
@@ -73,3 +73,5 @@
   justify-content: flex-start; /* Aligne à gauche par défaut */
   padding: 20px;
 }
+
+
