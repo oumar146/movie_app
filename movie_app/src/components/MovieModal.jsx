@@ -118,7 +118,7 @@ const MoviesModal = ({closeModal, movieDetails, modalShow}) => {
               </p>
               <p>
                 <strong>Note : </strong>
-                {movieDetails.vote_average || "Note non disponible"}
+                {parseFloat(movieDetails.vote_average).toFixed(1) || "Note non disponible"}
               </p>
               <p>
                 <strong>
