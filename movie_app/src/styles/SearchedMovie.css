@@ -17,7 +17,7 @@
 
 /* Carte d'un film */
 .card {
-  width: 150px; /* Ajuste la largeur des cartes selon tes besoins */
+  width: 200px; /* Ajuste la largeur des cartes selon tes besoins */
   text-decoration: none;
 }
 
@@ -25,10 +25,6 @@
   width: 100%;
   border-radius: 8px;
   transition: transform 0.3s ease-in-out;
-}
-
-.card img:hover {
-  transform: scale(1.1);
 }
 
 /* Message aucun résultat */

@@ -46,6 +46,11 @@ const SearchedMovie = ({ input }) => {
                     title={movie.title || movie.name}
                     className="movie-position"
                   />
+                  <p className="movie-title">
+                    {movie.title
+                      ? movie.title
+                      : "Le titre n'est pas disponible"}
+                  </p>
                 </div>
               )
           )}
