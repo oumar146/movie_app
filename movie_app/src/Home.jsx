@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
 import Movies from "./components/TMDB_API/Movies";
 import MoviesCarousel from "./components/MoviesCarousel";
@@ -6,30 +6,31 @@ import SearchedMovie from "./components/SearchedMovie";
 import { useModal } from './components/context/ModalContext';
 import "./styles/home.css";
 
-const ClassicMoviesCarousel = () => {
-  const [classicMovies, setClassicMovies] = useState([]);
+const RecentMoviesCarousel = () => {
+  const [recentMovies, setRecentMovies] = useState([]);
 
-  if (!classicMovies) {
-    return <div>rien</div>;
+  if (!recentMovies) {
+    return <div>Chargement des films récents...</div>;
   }
 
   return (
     <div>
       <Movies
         url="https://api.themoviedb.org/3/movie/upcoming?language=fr-FR&page=1"
-        setData={setClassicMovies}
+        setData={setRecentMovies}
       />
-      {classicMovies.length > 0 && (
-        <MoviesCarousel title="Classiques" moviesList={classicMovies} />
+      {recentMovies.length > 0 && (
+        <MoviesCarousel title="Films les Plus Récents" moviesList={recentMovies} />
       )}
     </div>
   );
 };
+
 const PopularMoviesCarousel = () => {
   const [popularMovies, setPopularMovies] = useState([]);
 
   if (!popularMovies) {
-    return <div>rien</div>;
+    return <div>Chargement des films populaires...</div>;
   }
 
   return (
@@ -39,7 +40,7 @@ const PopularMoviesCarousel = () => {
         setData={setPopularMovies}
       />
       {popularMovies.length > 0 && (
-        <MoviesCarousel title="Populaires" moviesList={popularMovies} />
+        <MoviesCarousel title="Films Populaires" moviesList={popularMovies} />
       )}
     </div>
   );
@@ -49,7 +50,7 @@ const TopRatedMoviesCarousel = () => {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
 
   if (!topRatedMovies) {
-    return <div>rien</div>;
+    return <div>Chargement des films les mieux notés...</div>;
   }
 
   return (
@@ -59,11 +60,12 @@ const TopRatedMoviesCarousel = () => {
         setData={setTopRatedMovies}
       />
       {topRatedMovies.length > 0 && (
-        <MoviesCarousel title="Meilleures notes" moviesList={topRatedMovies} />
+        <MoviesCarousel title="Films les Mieux Notés" moviesList={topRatedMovies} />
       )}
     </div>
   );
 };
+
 
 const Home = () => {
   const [input, setInput] = useState("");
@@ -77,7 +79,7 @@ const Home = () => {
       <Header input={input} setInput={setInput} />
       {!input ? (
         <div>
-          <ClassicMoviesCarousel />
+          <RecentMoviesCarousel />
           <TopRatedMoviesCarousel />
           <PopularMoviesCarousel />
         </div>
