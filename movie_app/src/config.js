@@ -1,6 +1,6 @@
 const config = {
-    // apiUrl: "https://shoemarketbackend.up.railway.app",
-    apiUrl: "http://localhost:4100",
+    apiUrl: "https://movieappbackend-production-c001.up.railway.app",
+    // apiUrl: "http://localhost:4100",
 
   };
   
