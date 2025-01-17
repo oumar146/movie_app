@@ -23,7 +23,6 @@ const TrailerButton = (props) => {
 };
 
 const AddFavouriteButton = ({ movieId }) => {
-  console.log(movieId)
   return (
     <div>
       <HandleFavourites movieId = {movieId}  />

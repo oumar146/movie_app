@@ -8,15 +8,18 @@ import "../styles/header.css"; // Assurez-vous d'avoir ce fichier pour les style
 
 // Logo du site
 const Logo = () => {
+  const navigate = useNavigate();
+
   return (
-    <h1    >
+    <h1  onClick={()=>{navigate("/#/home")}}
+    style={{cursor:"pointer"}} >
       FilmTV
     </h1>
   );
 };
 
 // Header
-const Header = ({ setInput,setInputSearchBar }) => {
+const Header = () => {
 
   const { user, updateUser } = useContext(UserContext); // Utilisation du contexte
   const navigate = useNavigate();
@@ -25,7 +28,7 @@ const Header = ({ setInput,setInputSearchBar }) => {
   const handleLogout = () => {
     updateUser(null);
     localStorage.removeItem("token");
-    navigate("/home");
+    navigate("/#/home");
   };
 
   return (

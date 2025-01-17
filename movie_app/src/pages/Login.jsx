@@ -12,11 +12,9 @@ const login = async (email, password, setError, updateUser, navigate) => {
       password,
     });
     const { user } = response.data;
-    console.log(user)
     updateUser(user); // Mettre à jour l'utilisateur dans le contexte
     setError(""); // Réinitialise les erreurs en cas de succès
-    navigate("/home");
-
+    navigate("/#/home"); // Redirection vers la page d'accueil
   } catch (error) {
     console.error("Erreur de connexion :", error);
     if (error.response && error.response.data.error) {
@@ -26,6 +24,7 @@ const login = async (email, password, setError, updateUser, navigate) => {
     }
   }
 };
+
 
 const Login = () => {
   const [email, setEmail] = useState("");

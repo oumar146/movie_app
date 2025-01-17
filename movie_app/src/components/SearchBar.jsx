@@ -5,7 +5,6 @@ function SearchBar({ inputSearchBar, setInputSearchBar, setInput }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     setInput(inputSearchBar);
-    console.log("recherche : ", inputSearchBar);
   };
 
   return (

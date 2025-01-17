@@ -30,7 +30,7 @@ const Signup = () => {
         password,
       });
       // redirection vers la page de connexion
-      navigate(`/login`);
+      navigate("/#/login");
     } catch (error) {
       console.error("Erreur d'inscription :", error);
       // Gérer les messages d'erreur
@@ -93,12 +93,12 @@ const Signup = () => {
             />
           </div>
           {/* Fin des champs du formulaire  */}
-          <button className="submit-btn" onClick={handleSignup}>
+          <button className="submit-btn mb-4" onClick={handleSignup}>
             S'inscrire
           </button>
 
           <p>
-            Vous avez déjà un compte ? <a href="/login">Connectez-vous ici</a>
+            Vous avez déjà un compte ? <a href="/#/login">Connectez-vous ici</a>
           </p>
         </div>
       </div>

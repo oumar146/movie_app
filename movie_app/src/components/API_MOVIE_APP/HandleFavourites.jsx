@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import config from "../../config";
 
 const HandleFavourites = ({ movieId }) => {
   const [isFavourite, setIsFavourite] = useState(false); // Gérer l'état du favori
   const { user } = useContext(UserContext); // Utiliser le contexte utilisateur
+  const navigate = useNavigate();
 
   // Ajouter ou supprimer des favoris
   const toggleFavourite = async () => {
     if (!user) {
-      console.log("Utilisateur non connecté");
+        navigate('/#/login')
       return;
     }
 
@@ -43,11 +45,6 @@ const HandleFavourites = ({ movieId }) => {
         );
       }
 
-      console.log(
-        isFavourite
-          ? `Film ${movieId} supprimé des favoris`
-          : `Film ${movieId} ajouté aux favoris`
-      );
       setIsFavourite(!isFavourite);
     } catch (error) {
       console.error(error.message);
