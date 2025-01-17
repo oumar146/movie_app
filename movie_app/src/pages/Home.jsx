@@ -1,10 +1,11 @@
 import { useState } from "react";
-import Header from "./components/Header";
-import Movies from "./components/TMDB_API/Movies";
-import MoviesCarousel from "./components/MoviesCarousel";
-import SearchedMovie from "./components/SearchedMovie";
-import { useModal } from './components/context/ModalContext';
-import "./styles/home.css";
+import Header from "../components/Header";
+import Movies from "../components/TMDB_API/Movies";
+import MoviesCarousel from "../components/MoviesCarousel";
+import SearchedMovie from "../components/SearchedMovie";
+import SearchBar from "../components/SearchBar";
+import { useModal } from '../components/context/ModalContext';
+import "../styles/home.css";
 
 const RecentMoviesCarousel = () => {
   const [recentMovies, setRecentMovies] = useState([]);
@@ -66,9 +67,9 @@ const TopRatedMoviesCarousel = () => {
   );
 };
 
-
 const Home = () => {
   const [input, setInput] = useState("");
+    const [inputSearchBar, setInputSearchBar] = useState("");
   const { modalOpen } =   useModal(); 
 
   // Applique le flou si le modal est ouvert
@@ -76,7 +77,12 @@ const Home = () => {
 
   return (
     <div style={blurStyle}> {/* Applique le style ici */}
-      <Header input={input} setInput={setInput} />
+      <Header input={input} setInput={setInput} setInputSearchBar={setInputSearchBar}/>
+      <SearchBar
+            inputSearchBar={inputSearchBar}
+            setInputSearchBar={setInputSearchBar}
+            setInput={setInput}
+          />
       {!input ? (
         <div>
           <RecentMoviesCarousel />

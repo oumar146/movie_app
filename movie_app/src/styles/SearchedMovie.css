@@ -23,6 +23,7 @@
   max-width: 200px; /* Limite la taille sur les grands écrans */
   text-decoration: none;
   cursor: pointer;
+  position: relative;
 }
 
 .movie-card img {

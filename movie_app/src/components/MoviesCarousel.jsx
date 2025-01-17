@@ -51,7 +51,6 @@ const MoviesCarousel = (props) => {
     setSelectedMovie(movie);
     setModalShow(true);
     openMovieModal();
-    console.log("open : ", selectedMovie);
   };
 
   const closeModal = () => {

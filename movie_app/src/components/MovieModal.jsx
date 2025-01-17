@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MovieVideo from "./TMDB_API/MovieVideo";
 import { Modal } from "react-bootstrap";
+import HandleFavourites from "./API_MOVIE_APP/HandleFavourites";
 
 const TrailerButton = (props) => {
   const [trailer, setTrailer] = useState([]);
@@ -21,8 +22,18 @@ const TrailerButton = (props) => {
   );
 };
 
-const MoviesModal = ({closeModal, movieDetails, modalShow}) => {
+const AddFavouriteButton = ({ movieId }) => {
+  console.log(movieId)
+  return (
+    <div>
+      <HandleFavourites movieId = {movieId}  />
+    </div>
+  );
+};
 
+
+
+const MoviesModal = ({ closeModal, movieDetails, modalShow }) => {
   const formatDateToFrench = (dateString) => {
     const months = [
       "janvier",
@@ -57,7 +68,6 @@ const MoviesModal = ({closeModal, movieDetails, modalShow}) => {
       remainingMinutes > 0 ? `${remainingMinutes}min` : ""
     }`.trim();
   };
-
 
   return (
     <div>
@@ -95,6 +105,7 @@ const MoviesModal = ({closeModal, movieDetails, modalShow}) => {
                 title={movieDetails.title || "Image non disponible"}
               />
               <TrailerButton movieId={movieDetails.id || ""} />
+              <AddFavouriteButton movieId={movieDetails.imdb_id || ""} />
             </div>
 
             {/* Infos à droite */}
@@ -118,7 +129,8 @@ const MoviesModal = ({closeModal, movieDetails, modalShow}) => {
               </p>
               <p>
                 <strong>Note : </strong>
-                {parseFloat(movieDetails.vote_average).toFixed(1) || "Note non disponible"}
+                {parseFloat(movieDetails.vote_average).toFixed(1) ||
+                  "Note non disponible"}
               </p>
               <p>
                 <strong>

@@ -1,63 +1,129 @@
-import { useState } from "react";
-import "../styles/header.css";
+import React, { useState, useContext } from "react";
+// import { useModal } from "./context/ModalContext";
+import { NavLink, useNavigate } from "react-router-dom";
+import { UserContext } from "../components/context/UserContext"; 
+import { Dialog, DialogPanel } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import "../styles/header.css"; // Assurez-vous d'avoir ce fichier pour les styles
+
 // Logo du site
-const Logo = ({ setInput, setInputSearchBar }) => {
+const Logo = () => {
   return (
-    <h1
-      className="logo"
-      onClick={() => {
-        setInput("");
-        setInputSearchBar("");
-      }}
-    >
-      StreamFlix
+    <h1    >
+      FilmTV
     </h1>
   );
 };
 
-// Barre de recherche
-function SearchBar({ input, setInput, inputSearchBar, setInputSearchBar }) {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setInput(inputSearchBar);
-    console.log("recherche : ", inputSearchBar, input);
+// Header
+const Header = ({ setInput,setInputSearchBar }) => {
+
+  const { user, updateUser } = useContext(UserContext); // Utilisation du contexte
+  const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    updateUser(null);
+    localStorage.removeItem("token");
+    navigate("/home");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="search-bar horizontal-alignment">
-      <input
-        type="text"
-        placeholder="Ex : Harry Potter"
-        value={inputSearchBar}
-        onChange={(event) => setInputSearchBar(event.target.value)}
-      />
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="15"
-        height="15"
-        fill="currentColor"
-        viewBox="0 0 16 16"
-        onClick={handleSubmit}
+    <header >
+      <nav className="flex items-center justify-between p-2">
+        <div className="flex items-center">
+          <Logo/>
+        </div>
+
+        <div className="hidden lg:flex items-center space-x-4">
+          <NavLink to="/home">
+            Home
+          </NavLink>
+          <NavLink to={user ? "/favourites" : "/login"}>
+            Favoris
+          </NavLink>
+          {user ? (
+            <button
+              onClick={handleLogout}
+            
+            >
+              Se déconnecter
+            </button>
+          ) : (
+            <NavLink
+              to="/login"
+            
+            >
+              Se connecter
+            </NavLink>
+          )}
+        </div>
+
+        <div className="lg:hidden">
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className="p-2 "
+          >
+            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
+      </nav>
+
+      <Dialog
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+        className="lg:hidden"
       >
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-      </svg>
-    </form>
-  );
-}
+        <DialogPanel className="dialog-panel fixed inset-0 z-10 p-4">
+          <div className="flex justify-between items-center mb-4">
+            <NavLink to="/home" className="text-xl font-bold">
+              FilmTV
+            </NavLink>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 "
+            >
+              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
 
-//Componsant principale
-const Header = ({ input, setInput }) => {
-  const [inputSearchBar, setInputSearchBar] = useState("");
-
-  return (
-    <header>
-      <Logo setInput={setInput} setInputSearchBar={setInputSearchBar} />
-      <SearchBar
-        input={input}
-        setInput={setInput}
-        inputSearchBar={inputSearchBar}
-        setInputSearchBar={setInputSearchBar}
-      />
+          <div className="space-y-4">
+            <NavLink
+              to="/home"
+              className="block text-sm font-semibold "
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/favourites"
+              className="block text-sm font-semibold "
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Favoris
+            </NavLink>
+            {user ? (
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setMobileMenuOpen(false);
+                }}
+                className="block text-sm font-semibold "
+              >
+                Se déconnecter
+              </button>
+            ) : (
+              <NavLink
+                to="/login"
+                className="block text-sm font-semibold "
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Se connecter
+              </NavLink>
+            )}
+          </div>
+        </DialogPanel>
+      </Dialog>
     </header>
   );
 };
