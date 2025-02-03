@@ -77,7 +77,7 @@ const Home = () => {
 
   return (
     <div style={blurStyle}> {/* Applique le style ici */}
-      <Header input={input} setInput={setInput} setInputSearchBar={setInputSearchBar}/>
+      <Header setInput={setInput} setInputSearchBar={setInputSearchBar}/>
       <SearchBar
             inputSearchBar={inputSearchBar}
             setInputSearchBar={setInputSearchBar}

@@ -11,6 +11,7 @@ const FetchFavourites = ({ setData, data}) => {
     if (!user) return;
 
     const fetchFavourites = async () => {
+
       try {
         // Récupération des favoris (IDs uniquement)
         const response = await fetch(`${config.apiUrl}/favourite/get`, {

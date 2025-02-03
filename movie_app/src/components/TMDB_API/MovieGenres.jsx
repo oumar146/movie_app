@@ -20,7 +20,7 @@ const MovieGenres = (props) => {
             .then(response => response.json())
             .then(response => props.setData(response.genres))
             .catch(err => console.error(err));
-    }, []);
+    });
 
     return (
         <div>
