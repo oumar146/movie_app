@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 // Importation du token d'authentification depuis le fichier de configuration
-const { TOKEN } = require('../../config.json');
+import config from '../../config';
 
 /*Ce composant à besoins des props suivant : id = id du film et setData = fonction pour changer la valeur d'un state */
 const SearchMovies = (props) => {
@@ -12,7 +12,7 @@ const SearchMovies = (props) => {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: `Bearer ${TOKEN}` // Authentification avec le token
+                Authorization: `Bearer ${config.TOKEN}` // Authentification avec le token
             }
         };
 

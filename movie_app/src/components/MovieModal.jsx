@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MovieVideo from "./TMDB_API/MovieVideo";
 import { Modal } from "react-bootstrap";
-import HandleFavourites from "./API_MOVIE_APP/HandleFavourites";
+import { useFavorites } from "./context/FavoritesContext";
+import { useLocation } from "react-router-dom";
 
 const TrailerButton = (props) => {
   const [trailer, setTrailer] = useState([]);
@@ -22,15 +23,34 @@ const TrailerButton = (props) => {
   );
 };
 
-const AddFavouriteButton = ({ movieId }) => {
+const AddFavouriteButton = ({ movieId, closeModal }) => {
+  const location = useLocation();
+  const { favourites, toggleFavorite } = useFavorites();
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // Mettre à jour isFavorite chaque fois que favourites change
+  useEffect(() => {
+    // Vérifie si movieId correspond à l'un des movie_id dans favourites
+    const isMovieInFavorites = favourites.some(
+      (favorite) => favorite.movie_id === String(movieId)
+    );
+    setIsFavorite(isMovieInFavorites);
+  }, [favourites, movieId]);
+
   return (
     <div>
-      <HandleFavourites movieId = {movieId}  />
+      <button
+        className="trailer-btn"
+        onClick={() => {
+          toggleFavorite(movieId, isFavorite, closeModal);
+          location.pathname === "/favourites" && isFavorite && closeModal();
+        }}
+      >
+        {isFavorite ? "Supprimer des favoris" : "Ajouter aux favoris"}
+      </button>
     </div>
   );
 };
-
-
 
 const MoviesModal = ({ closeModal, movieDetails, modalShow }) => {
   const formatDateToFrench = (dateString) => {
@@ -104,7 +124,10 @@ const MoviesModal = ({ closeModal, movieDetails, modalShow }) => {
                 title={movieDetails.title || "Image non disponible"}
               />
               <TrailerButton movieId={movieDetails.id || ""} />
-              <AddFavouriteButton movieId={movieDetails.imdb_id || ""} />
+              <AddFavouriteButton
+                closeModal={closeModal}
+                movieId={movieDetails.imdb_id || ""}
+              />
             </div>
 
             {/* Infos à droite */}

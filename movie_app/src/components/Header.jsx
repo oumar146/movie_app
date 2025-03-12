@@ -7,7 +7,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
-import FetchFavourites from "./API_MOVIE_APP/FetchFavourites";
+import { useFavorites } from "./context/FavoritesContext.jsx"; 
+
 import "../styles/header.css";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -54,20 +55,20 @@ const Logo = ({ setInput, setInputSearchBar }) => {
 
 const Header = ({ setInput, setInputSearchBar }) => {
   const { user, updateUser } = useContext(UserContext);
-  const [favourites, setFavourites] = useState([]);
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { favourites } = useFavorites(); 
+  
 
   const handleLogout = () => {
     updateUser(null);
     localStorage.removeItem("token");
     navigate("/#/home");
   };
+  
 
   return (
     <header>
-      <FetchFavourites setData={setFavourites} data={favourites} />
-
       <nav className="flex items-center justify-between p-2">
         <div className="flex items-center">
           <Logo setInput={setInput} setInputSearchBar={setInputSearchBar} />

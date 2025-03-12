@@ -1,15 +1,16 @@
-import React, { useState } from "react";
-// import "../styles/favourite.css";
-import FetchFavourites from "../components/API_MOVIE_APP/FetchFavourites";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import MoviesModal from "../components/MovieModal";
 import { useModal } from "../components/context/ModalContext";
+import { useFavorites } from "../components/context/FavoritesContext";
 
 const Favourite = () => {
   const { openMovieModal, closeMovieModal } = useModal();
-  const [favourites, setFavourites] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  // Utilisez useFavorites pour accéder à favouriteDetails
+  const { favourites, favouriteDetails } = useFavorites();
 
   const openModal = (movie) => {
     setSelectedMovie(movie);
@@ -23,19 +24,24 @@ const Favourite = () => {
     closeMovieModal();
   };
 
+  useEffect(() => {
+    console.log("favouriteDetails in Favourite:",favourites, favouriteDetails); 
+  }, [favouriteDetails]);
+
   return (
     <div style={{ minHeight: "100vh" }}>
-      <FetchFavourites setData={setFavourites} data = {favourites} />
       <Header />
-      {favourites.length > 0 ? (
-        <div className={`movies ${favourites.length >= 4 ? "centered" : ""}`}>
-          {favourites.map(
+      {favouriteDetails && favouriteDetails.length > 0 ? (
+        <div
+          className={`movies ${favouriteDetails.length >= 4 ? "centered" : ""}`}
+        >
+          {favouriteDetails.map(
             (movie) =>
               movie.poster_path && (
                 <div
                   key={movie.id}
-                  className="movie-card" // Utilisation de la nouvelle classe
-                  onClick={() => openModal(movie)} // Ouvre le modal avec les détails du film
+                  className="movie-card"
+                  onClick={() => openModal(movie)}
                 >
                   <img
                     src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
