@@ -27,8 +27,8 @@ const login = async (email, password, setError, updateUser, navigate) => {
 
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("invité1@gmail.com");
+  const [password, setPassword] = useState("1234");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { updateUser } = useContext(UserContext); // Utilisation du contexte
